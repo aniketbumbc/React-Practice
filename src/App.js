@@ -14,7 +14,7 @@ class App extends Component {
     ]
   };
 
-  switchNameHandler = (newName) => {
+  switchNameHandler = newName => {
     this.setState({
       tech: "Angular",
       person: [
@@ -26,19 +26,31 @@ class App extends Component {
     });
   };
 
-  nameChangeHandler = (event) =>{
+  nameChangeHandler = event => {
     this.setState({
       tech: event.target.value
     });
-  }
+  };
 
   render() {
+    const style = {
+      backgroundColor:'yellow',
+      font:'inherit',
+      border:'1px solid red',
+      padding:'8px',
+      cursor:'pointer'
+    }
     return (
       <div className="App">
         <h1> Hi, I am {this.state.tech} Developer</h1>
-        <button onClick={() => this.switchNameHandler("Bunyyyy")}>Switch</button>
-        <Person name={this.state.person[0].name} age={this.state.person[0].age}
-        switchs = {this.switchNameHandler.bind(this,"Yahooo")}
+        <button style = {style}
+        onClick={() => this.switchNameHandler("Bunyyyy")}>
+          Switch
+        </button>
+        <Person
+          name={this.state.person[0].name}
+          age={this.state.person[0].age}
+          switchs={this.switchNameHandler.bind(this, "Yahooo")}
         >
           <h1 style={{ color: "red" }}>This is child props</h1>
         </Person>
@@ -53,8 +65,8 @@ class App extends Component {
         <Person
           name={this.state.person[3].name}
           age={this.state.person[3].age}
-          change ={this.nameChangeHandler}
-          tech = {this.state.tech}
+          change={this.nameChangeHandler}
+          tech={this.state.tech}
         />
         <Student />
       </div>

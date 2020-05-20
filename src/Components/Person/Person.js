@@ -1,9 +1,9 @@
 import React from "react";
-
+import './person.css';
 const person = (props) => {
   console.log(props);
   return (
-    <div>
+    <div className="Person">
       <p>
         I am {props.name} and I am {props.age} years Old
       </p>
