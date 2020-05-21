@@ -7,30 +7,31 @@ class App extends Component {
   state = {
     tech: "React",
     person: [
-      { name: "Miket", age: 33 },
-      { name: "ABD", age: 13 },
-      { name: "Crone", age: 23 },
-      { name: "Jhon", age: 53 }
+      { id:"34f", name: "Miket", age: 33 },
+      { id:"14f",name: "ABD", age: 13 },
+      { id:"24f",name: "Crone", age: 23 },
+      { id:"f4f",name: "Jhon", age: 53 }
     ],
     showPersons: false
   };
 
-  switchNameHandler = newName => {
-    this.setState({
-      tech: "Angular",
-      person: [
-        { name: newName, age: 33 },
-        { name: "ABD", age: 13 },
-        { name: "Don", age: 23 },
-        { name: "Jhon", age: 20 }
-      ]
-    });
+  deletePersonHandler = index => {
+    const person = [...this.state.person];
+    person.splice(index, 1);
+    this.setState({ person: person });
   };
 
-  nameChangeHandler = event => {
-    this.setState({
-      tech: event.target.value
+  nameChangeHandler = (event,id) => {
+    const personIndex = this.state.person.findIndex(p=>{
+      return p.id === id;
     });
+    const persons = {...this.state.person[personIndex]};
+    persons.name = event.target.value;
+
+      const person = [...this.state.person];
+      person[personIndex] = persons
+
+    this.setState({person:person});
   };
 
   togglePersonHandler = () => {
@@ -48,32 +49,22 @@ class App extends Component {
     };
 
     let persons = null;
-    if(this.state.showPersons){
+    if (this.state.showPersons) {
       persons = (
-          <div>
-          <Person
-            name={this.state.person[0].name}
-            age={this.state.person[0].age}
-            switchs={this.switchNameHandler.bind(this, "Yahooo")}
-          >
-            <h1 style={{ color: "red" }}>This is child props</h1>
-          </Person>
-          <Person
-            name={this.state.person[1].name}
-            age={this.state.person[1].age}
-          />
-          <Person
-            name={this.state.person[2].name}
-            age={this.state.person[2].age}
-          />
-          <Person
-            name={this.state.person[3].name}
-            age={this.state.person[3].age}
-            change={this.nameChangeHandler}
-            tech={this.state.tech}
-          />
+        <div>
+          {this.state.person.map((ele, index) => {
+            return (
+              <Person
+                name={ele.name}
+                age={ele.age}
+                click={() => this.deletePersonHandler(index)}
+                key ={ele.id}
+                change={(event)=>this.nameChangeHandler(event,ele.id)}
+              />
+            );
+          })}
         </div>
-      )
+      );
     }
 
     return (
