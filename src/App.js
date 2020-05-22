@@ -7,10 +7,10 @@ class App extends Component {
   state = {
     tech: "React",
     person: [
-      { id:"34f", name: "Miket", age: 33 },
-      { id:"14f",name: "ABD", age: 13 },
-      { id:"24f",name: "Crone", age: 23 },
-      { id:"f4f",name: "Jhon", age: 53 }
+      { id: "34f", name: "Miket", age: 33 },
+      { id: "14f", name: "ABD", age: 13 },
+      { id: "24f", name: "Crone", age: 23 },
+      { id: "f4f", name: "Jhon", age: 53 }
     ],
     showPersons: false
   };
@@ -21,17 +21,17 @@ class App extends Component {
     this.setState({ person: person });
   };
 
-  nameChangeHandler = (event,id) => {
-    const personIndex = this.state.person.findIndex(p=>{
+  nameChangeHandler = (event, id) => {
+    const personIndex = this.state.person.findIndex(p => {
       return p.id === id;
     });
-    const persons = {...this.state.person[personIndex]};
+    const persons = { ...this.state.person[personIndex] };
     persons.name = event.target.value;
 
-      const person = [...this.state.person];
-      person[personIndex] = persons
+    const person = [...this.state.person];
+    person[personIndex] = persons;
 
-    this.setState({person:person});
+    this.setState({ person: person });
   };
 
   togglePersonHandler = () => {
@@ -41,7 +41,7 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: "yellow",
+      backgroundColor: "green",
       font: "inherit",
       border: "1px solid red",
       padding: "8px",
@@ -58,18 +58,29 @@ class App extends Component {
                 name={ele.name}
                 age={ele.age}
                 click={() => this.deletePersonHandler(index)}
-                key ={ele.id}
-                change={(event)=>this.nameChangeHandler(event,ele.id)}
+                key={ele.id}
+                change={event => this.nameChangeHandler(event, ele.id)}
               />
             );
           })}
         </div>
       );
+
+      style.backgroundColor = 'red';
+    }
+
+    let classes = [];
+    if(this.state.person.length <=3){
+      classes.push('blue');
+    }
+    if(this.state.person.length <=2){
+      classes.push('bold');
     }
 
     return (
       <div className="App">
         <h1> Hi, I am {this.state.tech} Developer</h1>
+        <p className={classes.join(' ')}> This is really working </p>
         <button style={style} onClick={this.togglePersonHandler}>
           Toggle Name
         </button>

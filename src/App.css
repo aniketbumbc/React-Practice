@@ -1,3 +1,12 @@
 .App {
   text-align: center;
 }
+
+.blue{
+  color: blueviolet;
+}
+
+.bold{
+  font-weight: bold;
+  border: 1px solid rgb(84, 167, 29);
+}
