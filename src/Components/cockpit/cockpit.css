@@ -1,0 +1,29 @@
+.blue {
+  color: blueviolet;
+}
+
+.bold {
+  font-weight: bold;
+  border: 1px solid rgb(84, 167, 29);
+}
+
+ button {
+      background-color: green;
+      font: inherit;
+      border: 1px solid red;
+      padding: 8px;
+      cursor: pointer;
+}
+
+ button:hover {
+      background-color: lightgreen;
+      color: white;
+    }
+     button.blue{
+          background-color: red;
+    }
+
+     button.blue:hover {
+        background-color: lightblue;
+        color: white
+      };
