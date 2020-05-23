@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import Person from "./Components/Person/Person";
 import Student from "./Components/Student";
-import Radium, {StyleRoot} from 'radium';
 class App extends Component {
   state = {
     tech: "React",
@@ -86,7 +85,6 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
       <div className="App">
         <h1> Hi, I am {this.state.tech} Developer</h1>
         <p className={classes.join(' ')}> This is really working </p>
@@ -96,9 +94,8 @@ class App extends Component {
         {persons}
         <Student />
       </div>
-      </StyleRoot>
     );
   }
 }
 
-export default (App);
+export default App;
