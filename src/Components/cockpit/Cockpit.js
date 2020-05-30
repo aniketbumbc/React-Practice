@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./cockpit.css";
 
 const Cockpit = props => {
-console.log(classes);
   let assignedclasses = [];
   let btnClass = "";
   if (props.showPerson) {
@@ -16,7 +15,7 @@ console.log(classes);
   }
   return (
     <div className={classes.Cockpit}>
-      <h1> Hi, I am {props.tech} Developer</h1>
+      <h1> Hi,{props.title}  In {props.tech} </h1>
       <p className={assignedclasses.join(" ")}> This is really working </p>
       <button className={btnClass} onClick={props.toggle}>
         Toggle Name

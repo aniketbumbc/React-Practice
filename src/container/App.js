@@ -3,8 +3,15 @@ import "./App.css";
 import PersonList from "../Components/PersonList";
 import Student from "../Components/Student";
 import Cockpit from "../Components/cockpit/Cockpit";
+// import WithClass from "../hoc/WithClass";
+// import Aux from "../hoc/Aux";
+import AuthContext from "../context/authcontext";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("App JS constructor");
+  }
   state = {
     tech: "React",
     person: [
@@ -15,6 +22,15 @@ class App extends Component {
     ],
     showPersons: false
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("Get Derived State Props ", props);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("Component Mounting");
+  }
 
   deletePersonHandler = index => {
     const person = [...this.state.person];
@@ -41,6 +57,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("render method App JS");
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -53,13 +70,18 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Cockpit
-          showPerson={this.state.showPersons}
-          tech={this.state.tech}
-          person={this.state.person}
-          toggle={this.togglePersonHandler}
-        />
-        {persons}
+        <AuthContext.Provider
+          value={{ authenticated: this.state.authenticated }}
+        >
+          <Cockpit
+            title={this.props.title}
+            showPerson={this.state.showPersons}
+            tech={this.state.tech}
+            person={this.state.person}
+            toggle={this.togglePersonHandler}
+          />
+          {persons}
+        </AuthContext.Provider>
         <Student />
       </div>
     );

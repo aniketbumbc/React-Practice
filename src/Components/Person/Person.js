@@ -2,6 +2,7 @@ import React from "react";
 import './person.css';
 //import styled from 'styled-components';
 const person = (props) => {
+  console.log("Person JS logging");
    return (
     <div className="Person">
       <p onClick = {props.click}>
